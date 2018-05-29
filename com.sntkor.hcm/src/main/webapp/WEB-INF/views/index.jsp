@@ -7,6 +7,37 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>main</h1>
+	<div class="wrap">
+		<div class="container">
+			<form id="hcm" action="" method="post">
+				<table border="1px solid #ebebeb;">
+					<colgroup align="center">
+						<col width="100px" />
+						<col width="100px" />
+						<col width="180px" />
+						<col width="100px" />
+						<col width="100px" />
+						<col width="100px" />
+					</colgroup>
+					<tbody>
+						<td>이름</td>
+						<td><input type="text" name="name" id="name" placeholder="이름"></td>
+						<td>주민등록번호</td>
+						<td><input type="text" name="resident_id_no" id="resident_id_no" placeholder="주민등록번호"></td>
+						<td>성별</td>
+						<td><input type="text" name="sex" id="sex" placeholder="성별"></td>
+						<tr>
+						<td>이름</td>
+						<td><input type="text" name="name" id="name" placeholder="이름"></td>
+						<td>주민등록번호</td>
+						<td><input type="text" name="resident_id_no" id="resident_id_no" placeholder="주민등록번호"></td>
+						<td>성별</td>
+						<td><input type="text" name="sex" id="sex" placeholder="성별"></td>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+	
 </body>
 </html>
