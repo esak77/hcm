@@ -13,5 +13,8 @@ public class HCMController {
 	public String home(Model model) {
 		return "index";
 	}
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public void insert(Model model) {
+	}
 	
 }
