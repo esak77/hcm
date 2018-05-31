@@ -16,7 +16,7 @@
 <body>
 	<div class="wrap">
 		<div class="container">
-			<form id="hcm" action="" method="post" enctype="multipart/form-data">
+			<form id="hcm" action="/insert_db" method="POST">
 				<div class="pi_content">
 					<div class="pi_top">
 						<input type="submit" id="btn_submit" value="등록하기">
@@ -146,7 +146,9 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
+					</div><!-- ./pi_middle -->
+				</form>
+				<%-- <form>
 					<div class="pi_down">
 						<h1>파일첨부</h1>
 						<div class="file_box">
@@ -160,11 +162,9 @@
 							<div class="file_wrap_r">
 							</div>
 						</div>
-					</div>
+					</div><!-- ./pr_down -->
 				</div>
-				
-			</form>
-			
+				</form>	 --%>
 			
 		</div>
 	</div>

@@ -63,7 +63,12 @@ function find_addr() {
 	 })
 	 
 	 $(".del_column").on("click",function(){
-		 $(".career_box tbody tr:last-child").remove();
+		 var length = $(".career_box tbody tr").length;
+		 if(length == 1){
+			 alert("더 이상 삭제할 수 없습니다.");
+		 }else{
+			 $(".career_box tbody tr:last-child").remove(); 
+		 }
 	 })
 	 
 	  $(".add_file").on("click",function(){
@@ -81,7 +86,11 @@ function find_addr() {
 	  $(".del_file").on("click",function(){
 		 var length = $(".file_box input").length;
 		  if(length <= 5){
-			 $(".file_wrap_l input:last-child").remove();
+			  if(length == 1){
+				  alert("더 이상 삭제할 수 없습니다.");
+			  }else{
+				  $(".file_wrap_l input:last-child").remove();
+			  }
 		  }else{
 			 $(".file_wrap_r input:last-child").remove();
 		  }
