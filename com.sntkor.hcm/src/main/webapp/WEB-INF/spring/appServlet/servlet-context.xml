@@ -24,5 +24,12 @@
 	<context:component-scan base-package="com.hcm.controller" />
 	
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="30720000"/>
+	</beans:bean>
+		
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\Users\SNTKorea\Desktop\test"/>
+	</beans:bean> 
 	
 </beans:beans>

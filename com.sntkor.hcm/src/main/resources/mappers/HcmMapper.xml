@@ -4,4 +4,73 @@
 
 <mapper namespace="com.sntkor.mappers.HcmMapper">
 
+	<select id="t_hcm_personaldata" parameterType="PersonalDataVO">
+		insert into t_hcm_personaldata (
+			name,
+			age,
+			sex,
+			education,
+			company,
+			position,
+			techinicalrating,
+			career,
+			phone,
+			mail,
+			certificate,
+			postcode,
+			addr1,
+			addr2
+		) values (
+			#{name},
+			#{age},
+			#{sex},
+			#{education},
+			#{company},
+			#{position},
+			#{techinicalrating},
+			#{career},
+			#{phone},
+			#{mail},
+			#{certificate},
+			#{postcode},
+			#{addr1},
+			#{addr2}
+		) 
+	</select>
+	
+	<select id="t_hcm_projectcareer" parameterType="ProjectCareerVO">
+		insert into t_hcm_projectcareer (
+			idx,
+			pro_tit,
+			pro_detail,
+			pro_term1,
+			pro_term2,
+			pro_part,
+			pro_reference,
+			pro_technic
+		) values (
+			(select max(idx) from t_hcm_personaldata),
+			#{pro_tit},
+			#{pro_detail},
+			#{pro_term1},
+			#{pro_term2},
+			#{pro_part},
+			#{pro_reference},
+			#{pro_technic}
+		) 
+	</select>
+	
+	<select id="t_hcm_fileupload" parameterType="String">
+		insert into t_hcm_fileupload(
+			idx,
+			file_name
+		) values (
+			(select max(idx) from t_hcm_personaldata),
+			#{file_name}
+		)
+	</select>
+	
 </mapper>
+
+
+

@@ -14,11 +14,12 @@
 <title>에스엔티코리아 인력관리</title>
 </head>
 <body>
-	<div class="wrap">
+	<div class="wrap" style="padding-top: 50px;">
 		<div class="container">
-			<form id="hcm" action="/insert_db" method="POST">
+			<form id="hcm" action="/insert_db" method="POST" enctype="multipart/form-data">
 				<div class="pi_content">
 					<div class="pi_top">
+						<input type="button" id="btn_back" onclick="back();" value="리스트보기">
 						<input type="submit" id="btn_submit" value="등록하기">
 						<h1>인적사항</h1>
 						<div class="info_wrap">
@@ -115,7 +116,8 @@
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div><!-- ./pi_top -->
+					
 					<div class="pi_middle">
 						<h1>경력사항</h1>
 						<div class="career_box">
@@ -132,14 +134,14 @@
 									<th>비고</br>(주요,기술)</th>
 								</thead>
 								<tbody>
-									<c:forEach varStatus="index" end="5" begin="1">
+									<c:forEach varStatus="index" end="3" begin="1">
 										<tr>
 											<td><input type="text" id="pro_tit" name="pro_tit" placeholder="프로젝트 명"></td>
 											<td><input type="text" id="pro_detail" name="pro_detail" placeholder="상세기술"></td>
 											<td><input type="text" id="pro_term1" name="pro_term1" placeholder="시작 기간"></td>
 											<td><input type="text" id="pro_term2" name="pro_term2" placeholder="종료 기간"></td>
 											<td><input type="text" id="pro_part" name="pro_part" placeholder="역할"></td>
-											<td><input type="text" id="pro_reference" name=pro_reference" placeholder="발주처"></td>
+											<td><input type="text" id="pro_reference" name="pro_reference" placeholder="발주처"></td>
 											<td><input type="text" id="pro_technic" name="pro_technic" placeholder="기술"></td>
 										</tr>
 									</c:forEach>
@@ -147,27 +149,27 @@
 							</table>
 						</div>
 					</div><!-- ./pi_middle -->
-				</form>
-				<%-- <form>
+					
 					<div class="pi_down">
 						<h1>파일첨부</h1>
 						<div class="file_box">
 							<span class="del_file">삭제하기</span>
 							<span class="add_file">추가하기</span>
 							<div class="file_wrap_l">
-								<c:forEach varStatus="index" end="5" begin="1">
-									<input id="file" name="file_${index.count }" type="file">
+								<c:forEach varStatus="index" end="1" begin="1">
+									<input multiple="multiple" id="file" name="file_name" type="file">
 								</c:forEach>
 							</div>
 							<div class="file_wrap_r">
 							</div>
 						</div>
 					</div><!-- ./pr_down -->
-				</div>
-				</form>	 --%>
+					
+				</div><!-- ./pi_content -->
+			</form><!-- ./form -->
 			
-		</div>
-	</div>
+		</div><!-- ./container -->
+	</div><!-- ./wrap -->
 	
 </body>
 </html>

@@ -73,7 +73,8 @@ function find_addr() {
 	 
 	  $(".add_file").on("click",function(){
 		  var length = $(".file_box input").length+1;
-		  var html="<input type='file' name='file_'"+length+"'>";
+		  var html="<input multiple='multiple' type='file' name='file_name'>";
+		  
 		  if(length <= 5){
 			  $(".file_wrap_l").append(html);
 		  }else if(length >=6 && length <= 10){
@@ -83,7 +84,7 @@ function find_addr() {
 		  }
 	 })
 	 
-	  $(".del_file").on("click",function(){
+	 $(".del_file").on("click",function(){
 		 var length = $(".file_box input").length;
 		  if(length <= 5){
 			  if(length == 1){
@@ -94,13 +95,20 @@ function find_addr() {
 		  }else{
 			 $(".file_wrap_r input:last-child").remove();
 		  }
-		 
 	 })
+	 var now = new Date();
+	 $(".today").text("Today "+now.getFullYear()+" - "+(now.getMonth()+1 < 10? "0"+(now.getMonth()+1):(now.getMonth()+1))+" - "+(now.getDate() < 10? "0"+now.getDate():now.getDate()));
+	 
 	 
  })
  
  
- 
+ function back(){
+	 $(location).attr('href','/');
+ }
+ function insert(){
+	 $(location).attr('href','/insert');
+ } 
  
  
  

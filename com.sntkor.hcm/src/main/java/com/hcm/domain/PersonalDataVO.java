@@ -16,13 +16,15 @@ public class PersonalDataVO {
     private String postcode;
     private String addr1;
     private String addr2;
+    private String statuscode; // 100이면 활성화 400이면 비활성화
     
 	public PersonalDataVO() {
 		super();
 	}
+	
 	public PersonalDataVO(Integer idx, String name, String age, String sex, String education, String company,
 			String position, String techinicalrating, String career, String phone, String mail, String certificate,
-			String postcode, String addr1, String addr2) {
+			String postcode, String addr1, String addr2, String statuscode) {
 		super();
 		this.idx = idx;
 		this.name = name;
@@ -39,7 +41,9 @@ public class PersonalDataVO {
 		this.postcode = postcode;
 		this.addr1 = addr1;
 		this.addr2 = addr2;
+		this.statuscode = statuscode;
 	}
+
 	public Integer getIdx() {
 		return idx;
 	}
@@ -130,12 +134,22 @@ public class PersonalDataVO {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
+	
+	public String getStatuscode() {
+		return statuscode;
+	}
+
+	public void setStatuscode(String statuscode) {
+		this.statuscode = statuscode;
+	}
+
 	@Override
 	public String toString() {
 		return "PersonalDataVO [idx=" + idx + ", name=" + name + ", age=" + age + ", sex=" + sex + ", education="
 				+ education + ", company=" + company + ", position=" + position + ", techinicalrating="
 				+ techinicalrating + ", career=" + career + ", phone=" + phone + ", mail=" + mail + ", certificate="
-				+ certificate + ", postcode=" + postcode + ", addr1=" + addr1 + ", addr2=" + addr2 + "]";
+				+ certificate + ", postcode=" + postcode + ", addr1=" + addr1 + ", addr2=" + addr2 + ", statuscode="
+				+ statuscode + "]";
 	}
 	
 	
