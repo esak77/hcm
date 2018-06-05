@@ -49,8 +49,12 @@ li{float: left; display: table; height: 100%; position: relative;}
 .hcm_content_header ul li span{
 	display : table-cell;
 	vertical-align: middle;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: bold;
+}
+.hcm_content_header ul li span font{
+	color:#1b0978;
+	font-size: 26px;
 }
 .today{
 	width: 250px;

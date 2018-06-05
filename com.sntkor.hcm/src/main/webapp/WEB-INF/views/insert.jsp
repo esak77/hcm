@@ -6,7 +6,9 @@
 <head>
 <link href="/resources/hcm/css/common.css" type="text/css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="text/javascript" src="/resources/hcm/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/resources/hcm/js/common.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -20,7 +22,7 @@
 				<div class="pi_content">
 					<div class="pi_top">
 						<input type="button" id="btn_back" onclick="back();" value="리스트보기">
-						<input type="submit" id="btn_submit" value="등록하기">
+						<input type="button" id="btn_submit" onclick="check();" value="등록하기">
 						<h1>인적사항</h1>
 						<div class="info_wrap">
 							<ul>

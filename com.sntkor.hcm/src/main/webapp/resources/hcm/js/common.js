@@ -110,7 +110,13 @@ function find_addr() {
 	 $(location).attr('href','/insert');
  } 
  
- 
+ function check(){
+	 if($("#phone").val()==""){
+		 alert("연락처를 입력하세요.");
+	 }else{
+		 $("#hcm").submit();
+	 }
+ }
  
  
  

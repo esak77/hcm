@@ -26,14 +26,19 @@ public class HCMController {
 	@Inject
 	private HcmService service;
 	
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model) throws Exception{
+		
+		
+		model.addAttribute("maxIdx", service.maxIdx());
+		System.out.println(service.view());
+		//model.addAttribute("total", map);
+		
 		return "index";
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public void insert(Model model) {
+	public void insert(Model model) throws Exception{
 	}
 	
 	@RequestMapping(value = "/insert_db", method = RequestMethod.POST)
@@ -56,9 +61,20 @@ public class HCMController {
 			projectcareervo.setPro_part(pro_part[i]);
 			projectcareervo.setPro_reference(pro_reference[i]);
 			projectcareervo.setPro_technic(pro_technic[i]);
-			service.t_hcm_projectcareer(projectcareervo);
+			
+			//service.t_hcm_projectcareer(projectcareervo);
+			
 		}
 		
+		
+		//File mkdir = new File("C:\\Users\\SNTKorea\\Desktop\\test\\"+vo.getPhone()); //테스트 경로 (윈도우)
+		//String uploadPath = "C:\\Users\\SNTKorea\\Desktop\\test\\"+vo.getPhone()+"\\"; //테스트 경로 (윈도우)
+		File mkdir = new File("/home/hcm_files/"+vo.getPhone()); //실제경로
+		String uploadPath = "/home/hcm_files/"+vo.getPhone()+"/"; //실제경로
+		
+		if(!mkdir.exists()) {
+			mkdir.mkdirs();
+		}
 		
 		//첨부파일 insert
 		List<MultipartFile> list =  files.getFile_name();
@@ -75,7 +91,7 @@ public class HCMController {
 			}
 			
 			String fileName = file.getOriginalFilename();
-			String uploadPath = "C:\\Users\\SNTKorea\\Desktop\\test\\";
+			
 			try {
 				ips = file.getInputStream();
 				
@@ -100,6 +116,8 @@ public class HCMController {
 					e2.printStackTrace();
 				}
 			}
+			
+			
 			
 		}
 		

@@ -5,6 +5,7 @@
 <mapper namespace="com.sntkor.mappers.HcmMapper">
 
 	<select id="t_hcm_personaldata" parameterType="PersonalDataVO">
+	<!-- 개인정보저장 -->
 		insert into t_hcm_personaldata (
 			name,
 			age,
@@ -39,6 +40,7 @@
 	</select>
 	
 	<select id="t_hcm_projectcareer" parameterType="ProjectCareerVO">
+	<!-- 경력 저장 -->
 		insert into t_hcm_projectcareer (
 			idx,
 			pro_tit,
@@ -61,6 +63,7 @@
 	</select>
 	
 	<select id="t_hcm_fileupload" parameterType="String">
+	<!-- 첨부파일 파일명 저장 -->
 		insert into t_hcm_fileupload(
 			idx,
 			file_name
@@ -68,6 +71,19 @@
 			(select max(idx) from t_hcm_personaldata),
 			#{file_name}
 		)
+	</select>
+	
+	<select id="maxIdx" resultType="int">
+	<!-- 등록된 총 인원 구하기 -->
+		select max(idx) from t_hcm_personaldata
+	</select>
+	
+	<select id="personaldata_list" resultType="PersonalDataVO">
+		select * from t_hcm_personaldata
+	</select>
+	
+	<select id="view" resultType="ViewVO">
+		select max(pc.pro_term2), pd.idx, pd.name, pd.techinicalrating, pd.career from t_hcm_personaldata pd, t_hcm_projectcareer pc where pd.idx = pc.idx group by pc.idx
 	</select>
 	
 </mapper>
