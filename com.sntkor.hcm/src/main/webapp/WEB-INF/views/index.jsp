@@ -55,11 +55,11 @@
 							<tbody>
 								<c:forEach var="item" items="${total}"  varStatus="index">
 									<tr>
-										<td>${item.value}</td>
-										<td>${item.value}</td>
-										<td>${item.value}</td>
-										<td>${item.value}</td>
-										<td>${item.value}</td>
+										<td>${item.idx}</td>
+										<td>${item.name}</td>
+										<td>${item.techinicalrating}</td>
+										<td>${item.career}</td>
+										<td>${item.pro_term2}</td>
 										<td>q</td>
 										<td><span><a href="">보기</a></span></td>
 									</tr>

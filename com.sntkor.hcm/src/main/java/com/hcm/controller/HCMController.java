@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,10 +31,20 @@ public class HCMController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) throws Exception{
 		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		System.out.println(year+" @@@@@@@@@@@@@@@");		
+		
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i=0; i<service.view().size(); i++) {
+			System.out.println(service.view().get(i).getPro_term2());
+			
+		}
 		
 		model.addAttribute("maxIdx", service.maxIdx());
-		System.out.println(service.view());
-		//model.addAttribute("total", map);
+		model.addAttribute("total", service.view());
 		
 		return "index";
 	}
@@ -62,7 +74,7 @@ public class HCMController {
 			projectcareervo.setPro_reference(pro_reference[i]);
 			projectcareervo.setPro_technic(pro_technic[i]);
 			
-			//service.t_hcm_projectcareer(projectcareervo);
+			service.t_hcm_projectcareer(projectcareervo);
 			
 		}
 		

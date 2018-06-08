@@ -140,7 +140,23 @@ li{float: left; display: table; height: 100%; position: relative;}
 	border: 1px solid red;
 	float: right;
 }
-
+.main_area table{
+	width: 100%;
+	height : 100%;
+	border: 1px solid blue;
+}
+.main_area thead{
+	background-color: #ebebeb;
+	font-size: 12px;
+	height: 50px;
+}
+.main_area thead th{
+	font-size: 12px;
+	height: 30px;
+}
+.main_area tbody{
+	text-align: center;
+}
 
 /* == insert == */
 form{

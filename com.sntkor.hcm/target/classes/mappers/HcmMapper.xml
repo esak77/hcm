@@ -83,7 +83,7 @@
 	</select>
 	
 	<select id="view" resultType="ViewVO">
-		select max(pc.pro_term2), pd.idx, pd.name, pd.techinicalrating, pd.career from t_hcm_personaldata pd, t_hcm_projectcareer pc where pd.idx = pc.idx group by pc.idx
+		select max(pc.pro_term2)  as pro_term2, pd.idx, pd.name, pd.techinicalrating, pd.career from t_hcm_personaldata pd, t_hcm_projectcareer pc where pd.idx = pc.idx group by pc.idx
 	</select>
 	
 </mapper>
