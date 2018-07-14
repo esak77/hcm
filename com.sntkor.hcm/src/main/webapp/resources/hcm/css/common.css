@@ -6,6 +6,7 @@ html,body{
 }
 ul{list-style: none;margin: 0;padding: 0;width: 100%; height: 50px; position: relative; overflow: hidden; display: table-cell; vertical-align: middle;}
 li{float: left; display: table; height: 100%; position: relative;}
+a{text-decoration: none;}
 .wrap{
 	width: 100%;
 	max-height: 100%;
@@ -25,7 +26,9 @@ li{float: left; display: table; height: 100%; position: relative;}
 	border: 1px solid red;
 }
 .hcm_content h3{
-	margin: 10px 0;
+	margin: 20px 0;
+	font-size: 34px;
+	font-weight: bold;
 } 
 .hcm_content_header{
 	height: 50px;
@@ -34,7 +37,7 @@ li{float: left; display: table; height: 100%; position: relative;}
 	margin-bottom: 30px;
 }
 .hcm_content_header ul{
-	width: 550px;
+	width: 750px;
 }
 .hcm_content_header ul li{
 	text-align: center;
@@ -90,7 +93,7 @@ li{float: left; display: table; height: 100%; position: relative;}
 	color: #fff;
 }
 .hcm_content_area{
-	min-height : 770px;
+	min-height : 670px;
 	max-height : 100%;
 	max-width : 100%;
 	position : relative;
@@ -140,6 +143,37 @@ li{float: left; display: table; height: 100%; position: relative;}
 	border: 1px solid red;
 	float: right;
 }
+.check_menu{
+	height: 30px;
+	width: 100%;
+	margin: 10px 0;
+}
+.check_menu ul{
+	height: 30px;
+	width : 500px;
+}
+.check_menu ul li{
+	width: 100px;
+	height: 100%;
+	border: 1px solid;
+	text-align: center;
+	transition : .5s all ease-out;
+	cursor: pointer;
+}
+.check_menu ul li:nth-child(2){
+	margin: 0 10px;
+}
+.check_menu ul li span{
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 30px;
+}
+.check_menu ul li:hover{
+	background-color: #000;
+}
+.check_menu ul li:hover span{
+	color: #fff;
+}
 .main_area table{
 	width: 100%;
 	height : 100%;
@@ -147,16 +181,54 @@ li{float: left; display: table; height: 100%; position: relative;}
 }
 .main_area thead{
 	background-color: #ebebeb;
-	font-size: 12px;
-	height: 50px;
 }
 .main_area thead th{
-	font-size: 12px;
-	height: 30px;
+	font-size: 14px;
+	height: 50px;
+	font-weight: bold;
 }
 .main_area tbody{
 	text-align: center;
 }
+.d_day{
+	font-size: 18px;
+	font-weight: bold;
+}
+.main_area table tbody td{
+	height: 40px;
+	font-size: 16px;
+}
+.main_area table tbody td:first-child input{
+	cursor: pointer;
+	width: 15px;
+	height: 15px;
+	border: 1px solid;
+	background-color: #fff;
+}
+.main_area table tbody td:last-child span{
+	border: 1px solid;
+	display: table;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	transition : .5s all ease-out;
+}
+.main_area table tbody td:last-child span a{
+	color: #000;
+}
+.main_area table tbody td:last-child span a{
+	font-size: 13px;
+	font-weight: bold;
+	display: table-cell;
+	vertical-align: middle;
+}
+.main_area table tbody td:last-child span:hover{
+	background-color: #000;
+}
+.main_area table tbody td:last-child span:hover a{
+	color: #fff;
+}
+
 
 /* == insert == */
 form{
@@ -181,6 +253,18 @@ input::-ms-input-placeholder {
 	color: #939393;
 	letter-spacing: .1em;
 }
+input[readonly="readonly"]{
+     background-color: #f4f4f4;
+     color: #6c6c6c;
+     font-size: 13px;
+     font-weight: bold;
+ }
+ select[disabled="disabled"]{
+ 	background-color: #f4f4f4;
+    color: #6c6c6c;
+    font-size: 13px;
+    font-weight: bold;
+ }
 .pi_content{
 	width: 100%;
 	min-height: 500px;
@@ -197,7 +281,8 @@ input::-ms-input-placeholder {
 	position: relative;
 }
 #btn_submit,
-#btn_back{
+#btn_back,
+#btn_edit{
 	width: 150px;
 	height: 45px;
 	position: absolute;
@@ -210,11 +295,14 @@ input::-ms-input-placeholder {
 	transition : .5s all ease-out;
 	padding: 0;
 }
+
 #btn_back{
 	right: 170px;
 }
+
 #btn_submit:hover,
-#btn_back:hover{
+#btn_back:hover,
+#btn_edit:hover{
 	background : #333;
 	color: #fff;
 }
@@ -301,19 +389,20 @@ li.input select{
 	width: 100%;
 	text-align: right;
 }
-.career_box span{
+.career_box button{
 	font-size: 14px;
 	font-weight: bold;
 	cursor: pointer;
+	background-color : #fff;
 	border: 1px solid #333;
 	color: #333;
 	padding: 7px 10px;
 	transition : .5s all ease-out;
 }
-.career_box span.del_column{
+.career_box .del_column{
 	margin-right: 20px;
 }
-.career_box span:hover{
+.career_box button:hover{
 	background: #333;
 	color: #fff;
 }
@@ -329,7 +418,7 @@ li.input select{
 }
 .career_box table input{
 	height: 40px;
-	width: 210px;
+	width: 200px;
 	border: 1px solid #969696;
 	text-align: center;
 	padding: 0;
@@ -339,7 +428,10 @@ li.input select{
 	width: 100px;
 }
 .career_box table input#pro_part{
-	width: 90px;
+	width: 190px;
+}
+.career_box table input#pro_reference{
+	width: 150px;
 }
 .pi_down{
 	max-width : 100%;
@@ -347,55 +439,69 @@ li.input select{
 	max-height : 100%;
 }
 .file_box{
-	min-height: 70px;
+	min-height: 90px;
 	max-height: 100%;
 	position: relative;
 	width: 100%;
 	text-align: right;
 }
-.file_box span{
+.file_box button{
 	font-size: 14px;
 	font-weight: bold;
 	cursor: pointer;
 	border: 1px solid #333;
+	background-color : #fff;
 	color: #333;
 	padding: 7px 10px;
 	transition : .5s all ease-out;
+	margin-bottom: 20px;
 }
-.file_box span.del_file{
+.file_box .del_file{
 	margin-right: 20px;
 }
-.file_box span:hover{
+.file_box button:hover{
 	background: #333;
 	color: #fff;
 }
 .file_wrap_l{
-	margin: 20px 0;
 	text-align: left;
 	float : left;
-	width : 45%;
+	width : 35%;
 	height : 100%;
 }
 .file_wrap_r{
-	float: right;
-	width: 45%;
+	float: left;
+	width: 35%;
 	height : 100%;
 }
 .file_wrap_l input,
 .file_wrap_r input{
 	padding: 0;
-	margin: 0;
-	display: block;
-	width: 100%;
+	margin: 0 15px 0 0;
+	display: inline-block;
+	width: 50%;
+	float: left;
 }
 .file_wrap_l input:nth-child(even),
 .file_wrap_r input:nth-child(even){
-	margin: 10px 0;
+	margin: 10px 15px 10px 0;
 }
-
-
-
-
+.file_wrap_l p,
+.file_wrap_r p{
+	margin: 0;
+	padding: 0;
+	height: 25px;
+	display: inline-block;
+	width: 45%;
+	margin-bottom: 10px;
+}
+.file_wrap_l p a,
+.file_wrap_r p a{
+	font-size: 14px;
+	font-weight: bold;
+	text-align: right;
+	line-height: 25px;
+}
 
 
 

@@ -49,56 +49,37 @@ function find_addr() {
  
  $(function(){
      
-	 $(".add_column").on("click",function(){
-		 var html = "<tr>";
-	     html += "<td><input type='text' id='pro_tit' name='pro_tit' placeholder='프로젝트 명'></td>";
-	     html += "<td><input type='text' id='pro_detail' name='pro_detail' placeholder='상세기술'></td>";
-	     html += "<td><input type='text' id='pro_term1' name='pro_term1' placeholder='시작 기간'></td>";
-	     html += "<td><input type='text' id='pro_term2' name='pro_term2' placeholder='종료 기간'></td>";
-	     html += "<td><input type='text' id='pro_part' name='pro_part' placeholder='역할'></td>";
-	     html += "<td><input type='text' id='pro_reference' name='pro_reference' placeholder='발주처'></td>";
-	     html += "<td><input type='text' id='pro_technic' name='pro_technic' placeholder='기술'></td></tr>";
-	     
-		 $(".career_box table tbody").append(html);
-	 })
+	var now = new Date();
+	$(".today").text("Today "+now.getFullYear()+" - "+(now.getMonth()+1 < 10? "0"+(now.getMonth()+1):(now.getMonth()+1))+" - "+(now.getDate() < 10? "0"+now.getDate():now.getDate()));
 	 
-	 $(".del_column").on("click",function(){
-		 var length = $(".career_box tbody tr").length;
-		 if(length == 1){
-			 alert("더 이상 삭제할 수 없습니다.");
-		 }else{
-			 $(".career_box tbody tr:last-child").remove(); 
-		 }
-	 })
-	 
-	  $(".add_file").on("click",function(){
-		  var length = $(".file_box input").length+1;
-		  var html="<input multiple='multiple' type='file' name='file_name'>";
-		  
-		  if(length <= 5){
-			  $(".file_wrap_l").append(html);
-		  }else if(length >=6 && length <= 10){
-			  $(".file_wrap_r").append(html);
-		  }else{
-			  alert("더 이상 추가할 수 없습니다.");
-		  }
-	 })
-	 
-	 $(".del_file").on("click",function(){
-		 var length = $(".file_box input").length;
-		  if(length <= 5){
-			  if(length == 1){
-				  alert("더 이상 삭제할 수 없습니다.");
-			  }else{
-				  $(".file_wrap_l input:last-child").remove();
-			  }
-		  }else{
-			 $(".file_wrap_r input:last-child").remove();
-		  }
-	 })
-	 var now = new Date();
-	 $(".today").text("Today "+now.getFullYear()+" - "+(now.getMonth()+1 < 10? "0"+(now.getMonth()+1):(now.getMonth()+1))+" - "+(now.getDate() < 10? "0"+now.getDate():now.getDate()));
-	 
+	var d_day_length = $(".d_day").length;
+	
+	for(var i=1; i<=d_day_length; i++){
+		var idx = $(".d_day_"+i).text();
+		if(idx!="대기중"){
+			$(".d_day_"+i).text(idx+" 일");
+				if(idx <= 100){
+					$(".d_day_"+i).css("color","red");
+				}
+		}
+		
+		$(".p_f_day_"+i).text($(".p_f_day_"+i).text().substring(0,4)+"-"+$(".p_f_day_"+i).text().substring(4,6)+"-"+$(".p_f_day_"+i).text().substring(6,8));
+	}
+	
+	
+	$(".detail .info_wrap input, .detail .info_box input").attr("readonly",true); //인적사항
+	$(".detail #sex").attr("disabled", "disabled"); //selectbox
+	$(".detail .career_box input").attr("readonly",true); //경력사항
+	
+	$(".detail #find, .detail .del_column, .detail .add_column, .detail .del_file, .detail .add_file, .detail #file, .detail #btn_submit").css("display","none");
+	
+	$(".check_all").on("click",function(){
+		$("input[type=checkbox]").prop("checked", true);
+	})
+	$(".check_release").on("click",function(){
+		$("input[type=checkbox]").prop("checked", false);
+	})
+	
  })
  
  
@@ -112,17 +93,95 @@ function find_addr() {
  function check(){
 	 if($("#phone").val()==""){
 		 alert("연락처를 입력하세요.");
+		 $("#phone").focus();
+	 }else if($("#pro_term1").val()=="" || $("#pro_term2").val()==""){
+		 alert("프로젝트 기간을 입력하세요.");
+		 if($("#pro_term1").val()==""){
+			 $("#pro_term1").focus();
+		 }else{
+			 $("#pro_term2").focus();
+		 }
 	 }else{
-		 $("#hcm").submit();
+		 var result = txtFieldCheck() == true ? true : false;
+		 console.log(result);
 	 }
  }
  
+ function onlyNumber(obj) {
+    $(obj).keyup(function(){
+         $(this).val($(this).val().replace(/[^0-9]/g,""));
+    }); 
+}
  
+function add_column(){
+	var html = "<tr>";
+    html += "<td><input type='text' id='pro_tit' name='pro_tit' placeholder='프로젝트 명'></td>";
+    html += "<td><input type='text' id='pro_detail' name='pro_detail' placeholder='상세기술'></td>";
+    html += "<td><input type='text' id='pro_term1' name='pro_term1' placeholder='시작 기간'></td>";
+    html += "<td><input type='text' id='pro_term2' name='pro_term2' placeholder='종료 기간'></td>";
+    html += "<td><input type='text' id='pro_part' name='pro_part' placeholder='역할'></td>";
+    html += "<td><input type='text' id='pro_reference' name='pro_reference' placeholder='발주처'></td>";
+    html += "<td><input type='text' id='pro_technic' name='pro_technic' placeholder='기술'></td></tr>";
+    $(".career_box table tbody").append(html);
+}
  
+function del_column(){
+	 var length = $(".career_box tbody tr").length;
+	 if(length == 1){
+		 alert("더 이상 삭제할 수 없습니다.");
+	 }else{
+		 $(".career_box tbody tr:last-child").remove(); 
+	 }
+}
+
+function del_file(){
+	var length = $(".file_box input").length;
+	  if(length <= 2){
+		  if(length == 1){
+			  alert("더 이상 삭제할 수 없습니다.");
+		  }else{
+			  $(".file_wrap_l input:last-child").remove();
+		  }
+	  }else{
+		 $(".file_wrap_r input:last-child").remove();
+	  }
+}
+
+function add_file(){
+	var length = $(".file_box input").length+1;
+	  var html="<input multiple='multiple' type='file' name='file_name'>";
+	  
+	  if(length <= 2){
+		  $(".file_wrap_l").append(html);
+	  }else if(length >=2 && length <= 4){
+		  $(".file_wrap_r").append(html);
+	  }else{
+		  alert("더 이상 추가할 수 없습니다.");
+	  }
+}
+
+
+function edit(){
+	$(".detail .info_wrap input, .detail .info_box input").attr("readonly",false); // 인적사항 활성화
+	$(".detail #sex").removeAttr("disabled"); // selectbox활성화
+	$(".detail .career_box input").attr("readonly",false); //경력사항 활성화
+	$(".detail #find, .detail .del_column, .detail .add_column, .detail .del_file, .detail .add_file, .detail #file, .detail #btn_submit").css("display","");
+	$(".detail #btn_edit").hide();
+}
  
- 
- 
- 
- 
- 
- 
+function txtFieldCheck(){
+	// form안의 모든 text type 조회
+	var txtEle = $("#hcm input[type=text]");
+
+	for(var i = 0; i < txtEle.length; i ++){
+
+		if("" == $(txtEle[i]).val() || null == $(txtEle[i]).val()){
+			$(txtEle[i]).val(" ");
+			$("#hcm").submit();
+			return true;
+		}
+	}
+}
+
+
+

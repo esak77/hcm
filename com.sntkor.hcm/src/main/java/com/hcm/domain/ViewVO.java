@@ -1,11 +1,11 @@
 package com.hcm.domain;
 
 public class ViewVO {
-	 private Integer idx;
-	 private String name;
-	 private String techinicalrating;
-	 private String career;
-	 private String pro_term2; // 프로젝트종료일
+	private Integer idx;
+	private String name;
+	private String techinicalrating;
+	private String career;
+	private String pro_term2; // 프로젝트종료일
 	public ViewVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -53,6 +53,9 @@ public class ViewVO {
 		return "ViewVO [idx=" + idx + ", name=" + name + ", techinicalrating=" + techinicalrating + ", career=" + career
 				+ ", pro_term2=" + pro_term2 + "]";
 	}
-	 
-	 
+	
+	
+	
+	
+	
 }	

@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FilesVO {
 	private List<MultipartFile> file_name;
-
 	
 	public FilesVO() {
 		super();
@@ -29,6 +28,6 @@ public class FilesVO {
 	public String toString() {
 		return "FilesVO [file_name=" + file_name + "]";
 	}
-	
+
 	
 }

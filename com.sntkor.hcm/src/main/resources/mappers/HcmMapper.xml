@@ -73,18 +73,106 @@
 		)
 	</select>
 	
-	<select id="maxIdx" resultType="int">
 	<!-- 등록된 총 인원 구하기 -->
-		select max(idx) from t_hcm_personaldata
+	<select id="maxIdx" resultType="int">
+		select count(*) from t_hcm_personaldata
 	</select>
 	
-	<select id="personaldata_list" resultType="PersonalDataVO">
-		select * from t_hcm_personaldata
+	<!-- 프로젝트 투입 인원 구하기  -->
+	<select id="p_status" resultType="DateVO">
+		<!-- select max(pro_term2) as date from t_hcm_projectcareer group by idx -->
+		select max(pc.pro_term2) as date 
+		from t_hcm_projectcareer pc, t_hcm_personaldata pd 
+		where pc.idx = pd.idx and statuscode = "100" 
+		group by pc.idx
+	</select>
+	
+	<!-- 비활성화 총 인원 구하기 -->
+	<select id="statuscode_400" resultType="int">
+		select count(*) from t_hcm_personaldata where statuscode = "400"
 	</select>
 	
 	<select id="view" resultType="ViewVO">
-		select max(pc.pro_term2)  as pro_term2, pd.idx, pd.name, pd.techinicalrating, pd.career from t_hcm_personaldata pd, t_hcm_projectcareer pc where pd.idx = pc.idx group by pc.idx
+		select max(pc.pro_term2) as pro_term2, pd.idx, pd.name, pd.techinicalrating, pd.career 
+		from t_hcm_personaldata pd, t_hcm_projectcareer pc 
+		where pd.idx = pc.idx and pd.statuscode = "100" 
+		group by pc.idx order by idx desc 
 	</select>
+	
+	<select id="detail_pd_vo" resultType="PersonalDataVO" parameterType="int">
+		select * from t_hcm_personaldata where idx = #{idx}
+	</select>
+	
+	<select id="detail_pc_vo" resultType="ProjectCareerVO" parameterType="int">
+		select * from t_hcm_projectcareer where idx = #{idx} order by pro_term2 desc
+	</select>
+	
+	<select id="detail_files_vo" resultType="FileDownLoadVO" parameterType="int">
+		select file_name from t_hcm_fileupload  where idx = #{idx}
+	</select>
+	
+	
+	<!-- 수정부분 -->
+	<select id="update_pd" parameterType="PersonalDataVO">
+		update t_hcm_personaldata set
+			name = #{name},
+			age = #{age},
+			sex = #{sex},
+			education = #{education},
+			company = #{company},
+			position = #{position},
+			techinicalrating = #{techinicalrating},
+			career = #{career},
+			phone = #{phone},
+			mail = #{mail},
+			certificate = #{certificate},
+			postcode = #{postcode},
+			addr1 = #{addr1},
+			addr2 = #{addr2}
+		where idx = #{idx}
+	</select>
+	
+	
+	<select id="update_pc" parameterType="ProjectCareerVO">
+		insert into t_hcm_projectcareer (
+			idx,
+			pro_tit,
+			pro_detail,
+			pro_term1,
+			pro_term2,
+			pro_part,
+			pro_reference,
+			pro_technic
+		) values (
+			#{idx},
+			#{pro_tit},
+			#{pro_detail},
+			#{pro_term1},
+			#{pro_term2},
+			#{pro_part},
+			#{pro_reference},
+			#{pro_technic}
+		)
+	</select>
+	
+	<!-- 
+	<select id="t_hcm_fileupload" parameterType="String">
+	첨부파일 파일명 저장
+		insert into t_hcm_fileupload(
+			idx,
+			file_name
+		) values (
+			(select max(idx) from t_hcm_personaldata),
+			#{file_name}
+		)
+	</select> -->
+	
+	
+	<!-- 삭제 -->
+	<delete id="del_pc" parameterType="int">
+		delete from t_hcm_projectcareer where idx = #{idx}
+	</delete>
+	
 	
 </mapper>
 
